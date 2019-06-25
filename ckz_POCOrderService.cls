@@ -3,7 +3,7 @@ global with sharing class ckz_POCOrderService extends ccrz.ccServiceOrder {
     global override virtual Map<String,Object> getFieldsMap(Map<String,Object> inputData) {
         inputData = super.getFieldsMap(inputData); 
             String objectFields = (String)inputData.get(ccrz.ccService.OBJECTFIELDS); 
-                objectFields += ',ExtOrderStatus__c';
+                objectFields += ', ExtOrderStatus__c';
                     return new Map <String,Object> {ccrz.ccService.OBJECTFIELDS => objectFields};  
     }
 
@@ -24,14 +24,11 @@ global with sharing class ckz_POCOrderService extends ccrz.ccServiceOrder {
 
             // TODO make callout here
 
-            String extOrderStatus = '';
-
-            String orderStatus = fetchOrderStat(orderNumber.toPlainString());
-
-            if(orderStatus != null) {
-                orderObjMap.put('orderStatus', orderStatus);
-            }
-
+            String extOrderStatus = fetchOrderStat(orderNumber.toPlainString());
+           
+           if(extOrderStatus != null) {
+                orderObjMap.put('extOrderStatus', extOrderStatus); //ExtOrderStatus__c   
+           }
             ccrz.ccLog.log('ckz_POCOrderService', 'orderNumber: ' + orderNumber);
         }
 
@@ -49,8 +46,8 @@ global with sharing class ckz_POCOrderService extends ccrz.ccServiceOrder {
         ccrz.ccLog.log('ckz_POCOrderService', 'fetchOrderStat() begin');
 
         String url ='https://odata-2-virginia.heroku.com/odata/v4/f19b42965f9a48078e2b968167ccf736/salesforce$ccrz__e_order__c?$filter=ccrz__ordernumber__c%20eq%20' + orderNumber;
-        String userName = '';
-        String password = '';
+        String userName = '63fa2b1eec9846fe80734b72991ab560';
+        String password = '27be344bbdfe46439df20a47792cbb1c';
         Blob headerValue = Blob.valueOf( username + ':' + password);
         String authorizationHeader = 'BASIC ' + EncodingUtil.base64Encode(headerValue);
         // Instantiate a new http object
@@ -79,7 +76,7 @@ global with sharing class ckz_POCOrderService extends ccrz.ccServiceOrder {
 
             Map<String, Object> objMap = (Map<String, Object>)obj;
 
-            herokuStatus = (String)objMap.get('ccrz__orderstatus__c');
+            herokuStatus = (String)objMap.get('extorderstatus__c'); //case sensitive (external source)
 
         }
 
@@ -89,5 +86,5 @@ global with sharing class ckz_POCOrderService extends ccrz.ccServiceOrder {
     }
 
 }
-//-- replaces 	cclxrep.cclxrepServiceOrder in Service Management serviceOrder
-//-- Service Management c.ckz_POCOrderService  (Don't forget c.)
+//-- replaces ccServiceOrder in Service Management serviceOrder
+//-- Service Management c.ckz_POCOrderService  (Do not leave off c. when adding to Config)
