@@ -1,0 +1,40 @@
+<inquiry>
+    <CUSTOMER_ORDER>
+    <Bill_TO Value="1254889"/>
+    <ORDER_TYPE_ID Value="INQUIRY"/>
+              <CUSTOMER_ORG_ID Value="NOT_USED"/>
+    <CUSTOMER_ORG_NAME Value="NOT_USED"/>
+    <ORDER_POINT_ID Value="NOT_USED"/>
+    <SELLING_ORG_ID Value="NOT_USED"/>
+    <ORDER_LINE_ITEMS>
+       <!--this section is repeated for each inquiry line-->
+       <ORDER_LINE_ITEM>
+      <LINE_NBR>001</LINE_NBR>
+          <ITEM_ID Value="25204"/>
+          <ORDERED_QTY Value="8"/>
+      <OFFERS_LIST><OFFER>REPLENISHEMENT</OFFER><OFFER>EXPRESS</OFFER></OFFERS_LIST>
+          <REQUESTED_DELIVERY_DATE Value="06/25/2019"/> /** DD/MM/CCYY **/
+          <SHIP_TO_ID Value="1357446"/>      
+      <PROMISED_SCHEDULES>
+<!--this section is repeated for each response of the availability check for the inquiry line-->
+      <SCHEDULE>
+   <SCHEDULE_NBR>01</SCHEDULE_NBR>
+   <SCHEDULED_ARRIVAL_DATE>06/25/2019</SCHEDULED_ARRIVAL_DATE> /** DD/MM/CCYY **/>
+   <PLANNED_SHIP_DATE>06/24/2019</PLANNED_SHIP_DATE> /** DD/MM/CCYY **/>
+   <QTY>8</QTY>
+   <OFFER>EXPRESS</OFFER>
+   <WAREHOUSE>U71</WAREHOUSE>
+      </SCHEDULE>
+      <SCHEDULE>
+   <SCHEDULE_NBR>02</SCHEDULE_NBR>
+   <SCHEDULED_ARRIVAL_DATE>06/26/2019</SCHEDULED_ARRIVAL_DATE> /** DD/MM/CCYY **/>
+   <PLANNED_SHIP_DATE>06/23/2019</PLANNED_SHIP_DATE> /** DD/MM/CCYY **/>
+   <QTY>8</QTY>
+   <OFFER>REPLENISHEMENT</OFFER>
+   <WAREHOUSE>U61</WAREHOUSE>
+      </SCHEDULE>
+     </PROMISED_SCHEDULES>
+       </ORDER_LINE_ITEM>
+    </ORDER_LINE_ITEMS>
+ </CUSTOMER_ORDER>
+ </inquiry>
