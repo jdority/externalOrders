@@ -46,7 +46,7 @@ global with sharing class ckz_POCOrderService extends ccrz.ccServiceOrder {
         ccrz.ccLog.log('ckz_POCOrderService', 'fetchOrderStat() begin');
 
         //Named Credential for External Order System
-        String url = 'callout:HerokuExtOrders/salesforce$ccrz__e_order__c?$filter=ccrz__ordernumber__c';
+        String url = 'callout:B2BexternalData/salesforce$ccrz__e_order__c?$filter=ccrz__ordernumber__c';
         String encoded = url + EncodingUtil.urlEncode(' eq ' + orderNumber, 'UTF-8');
         String encoded1 = encoded.replace('+', '%20');
 
